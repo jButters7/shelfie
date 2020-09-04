@@ -12,12 +12,12 @@ class App extends Component {
     this.state = {
       inventory: []
     }
+    this.componentDidMount = this.componentDidMount.bind(this)
   }
 
   componentDidMount() {
     console.log('sending to server')
     axios.get(`/api/inventory`).then((res) => {
-      console.log('coming back')
       this.setState({
         inventory: res.data
       })
@@ -25,12 +25,13 @@ class App extends Component {
       .catch(err => console.log('Error on Component APP 1', err))
   }
 
+
   render() {
     return (
       <div className="App">
         <Header />
-        <Dashboard data={this.state.inventory} />
-        <Form />
+        <Dashboard data={this.state.inventory} componentDidMount={this.componentDidMount} />
+        <Form componentDidMount={this.componentDidMount} />
       </div>
     );
   }
