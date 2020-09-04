@@ -48,7 +48,6 @@ class Form extends Component {
     })
   }
 
-
   addProduct() {
     const { img, name, price } = this.state
     axios.post(`/api/product`, { img, name, price })
@@ -61,6 +60,10 @@ class Form extends Component {
 
     this.handleCancel();
     this.props.componentDidMount();
+  }
+
+  componentDidUpdate() {
+
   }
 
 

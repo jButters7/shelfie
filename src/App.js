@@ -10,7 +10,8 @@ class App extends Component {
     super();
 
     this.state = {
-      inventory: []
+      inventory: [],
+      currentProduct: {}
     }
     this.componentDidMount = this.componentDidMount.bind(this)
   }
@@ -31,7 +32,9 @@ class App extends Component {
       <div className="App">
         <Header />
         <Dashboard data={this.state.inventory} componentDidMount={this.componentDidMount} />
-        <Form componentDidMount={this.componentDidMount} />
+        <Form
+          componentDidMount={this.componentDidMount}
+          currentProduct={this.state.currentProduct} />
       </div>
     );
   }
