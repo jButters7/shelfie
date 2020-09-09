@@ -13,15 +13,27 @@ module.exports = {
     const { img, name, price } = req.body
     // console.log(req.body)
     db.create_product([img, name, price])
-      .then(() => res.sendStatus(200))
+      .then(inventory => res.status(200).send(inventory))
       .catch(() => res.status(500).send(`Couldn't create a new product`))
+  },
+
+  editProduct: (req, res) => {
+    const db = req.app.get('db')
+    const { id } = req.params
+    const { img, name, price } = req.body
+    console.log('start edit')
+    db.edit_product([id, img, name, price])
+      .then(product => res.status(200).send(product))
+      .catch(() => res.status(500).send(`Couldn't edit Product`))
+
+
   },
   deleteProduct: (req, res) => {
     const db = req.app.get('db')
     const { id } = req.params
     console.log(req.params, id)
     db.delete_product([id])
-      .then(() => res.sendStatus(200))
+      .then((inventory) => res.status(200).send(inventory))
       .catch(() => res.status(500).send(`Couldn't delete that product`))
     console.log('deleted')
   }

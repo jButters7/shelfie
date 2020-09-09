@@ -4,9 +4,7 @@ const app = express()
 const massive = require('massive')
 const controller = require('./controller')
 
-const SERVER_PORT = 5000;
-
-const { CONNECTION_STRING } = process.env
+const { CONNECTION_STRING, SERVER_PORT } = process.env
 
 app.use(express.json())
 
@@ -15,6 +13,7 @@ app.use(express.json())
 app.get('/api/inventory', controller.getInventory)
 app.post('/api/product', controller.createProduct)
 app.delete(`/api/product/:id`, controller.deleteProduct)
+app.put('/api/product/:id', controller.editProduct)
 
 
 massive({

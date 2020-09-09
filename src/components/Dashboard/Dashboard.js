@@ -11,17 +11,22 @@ class Dashboard extends Component {
 
   deleteRequest(id) {
     axios.delete(`/api/product/${id}`)
-    this.props.componentDidMount();
-    console.log('hit delete')
+      .catch(err => console.log(err))
+    this.props.getInventory();
   }
 
   render() {
     return (
-      <div>
-        {/* {console.log(this.props.data)} */}
+      <div className='dashboard'>
         {this.props.data.map(product => {
           return (
-            <Product key={product.id} product={product} deleteRequest={this.deleteRequest} />)
+            <Product
+              key={product.id}
+              product={product}
+              deleteRequest={this.deleteRequest}
+              editProduct={this.props.editProduct}
+              setCurrentProduct={this.props.setCurrentProduct}
+            />)
         })}
       </div>
 

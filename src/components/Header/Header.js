@@ -4,7 +4,11 @@ class Header extends Component {
 
   render() {
     return (
-      <div>Header.js</div>
+      <div className='header'>
+        <h2>Shelfie</h2>
+        <button className='header-btn'>Dashboard</button>
+        <button className='header-btn'>Add Inventory</button>
+      </div>
     )
   }
 }
